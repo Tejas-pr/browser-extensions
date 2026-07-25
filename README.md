@@ -8,10 +8,10 @@
 ## 🔁 Loop It — Universal A-B Repeat
 
 <div align="center">
-  <img src="loopit-extension/preview.png" alt="Loop It Extension Preview" width="600">
+  <img src="loopit-extension/images/yt-music.png" alt="Loop It Extension Preview" width="600">
   <br>
   <br>
-  <img src="loopit-extension/preview_collapsed.png" alt="Loop It Extension Collapsed" width="300">
+  <img src="loopit-extension/images/loopit.png" alt="Loop It Extension Collapsed" width="300">
 </div>
 
 <br>
@@ -20,6 +20,7 @@
 
 ### ✨ Key Features
 - **Universal Media Detection**: Magically appears only when an audio or video player is active on the page. Uses deep adapters for major sites and a smart generic fallback for everything else.
+- **Platform Support**: Fully supports **YouTube, YouTube Music, Apple Music**, and generic HTML5 players. *(Note: Spotify is currently unsupported due to DRM restrictions. Contributions are welcome!)*
 - **Advanced Media Controls**: Play, pause, skip, and rewind without ever leaving the panel.
 - **Precision Timestamps**: Manually enter exact timestamps or drag the custom timeline to set points visually.
 - **Smart Memory**: Automatically saves and remembers your loops per track.
@@ -35,7 +36,17 @@
 4. **Load the Extension:** Click the **Load unpacked** button.
 5. **Select the Directory:** Choose the extracted `loopit-extension` folder.
 
-You're all set! Head over to YouTube, Spotify, or your favorite streaming site and experience the upgrade.
+You're all set! Head over to YouTube, Apple Music, or your favorite supported streaming site and experience the upgrade.
+
+---
+
+## 🤝 Contributing
+
+We would love to expand support to more platforms! 
+
+Currently, platforms like **Spotify** are unsupported because they aggressively hide their audio elements behind Encrypted Media Extensions (DRM), making it extremely difficult for a browser extension to hook into the stream to loop it or change its speed.
+
+If you are a developer who knows how to bypass or properly hook into Spotify's (or other unsupported platforms') web players, **pull requests are highly encouraged!** Let's work together to make this extension truly universal.
 
 ---
 

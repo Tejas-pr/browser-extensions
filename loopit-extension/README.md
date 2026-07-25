@@ -4,10 +4,10 @@
 </div>
 
 <div align="center">
-  <img src="preview.png" alt="Loop It Extension Preview" width="600">
+  <img src="images/yt-music.png" alt="Loop It Extension Preview" width="600">
   <br>
   <br>
-  <img src="preview_collapsed.png" alt="Loop It Extension Collapsed" width="300">
+  <img src="images/loopit.png" alt="Loop It Extension Collapsed" width="300">
 </div>
 
 ---
@@ -61,7 +61,7 @@
 
 ## 📝 Technical Notes & Limitations
 
-- **Universal Support**: Uses deep site adapters for YouTube, YouTube Music, Spotify, and Apple Music. Automatically falls back to a generic adapter for any other site using standard HTML5 `<video>` or `<audio>` elements.
+- **Universal Support**: Uses deep site adapters for YouTube, YouTube Music, and Apple Music. Automatically falls back to a generic adapter for any other site using standard HTML5 `<video>` or `<audio>` elements. *(Note: Spotify is currently unsupported due to DRM hiding its audio elements).*
 - **Privacy First:** No API keys, no accounts, and absolutely zero data collection. Everything stays strictly in your browser's local storage.
 - Saved loops are keyed by the video ID (`?v=...`) and stored in `localStorage`. They are localized to your specific browser and do not sync across devices.
 - If YouTube dynamically swaps the `<video>` element (e.g., after an ad), loop points will reset for that playback session. This is expected behavior as a new video instance is created.
@@ -73,3 +73,13 @@
 
 - **Chrome Web Store**: Register at the [Developer Dashboard](https://chrome.google.com/webstore/devconsole) (one-time $5 fee), configure your public "Publisher name", zip this directory, and upload it as a new item. All necessary icons are already included.
 - **Firefox**: The extension is compatible with minor manifest adjustments (Firefox fully supports MV3 content scripts). You can publish it for free via [addons.mozilla.org](https://addons.mozilla.org).
+
+---
+
+## 🤝 Contributing & Unsupported Platforms
+
+We welcome contributions to make Loop It even more universal!
+
+Currently, some platforms like **Spotify** are unsupported. This is because they use Encrypted Media Extensions (DRM) to aggressively hide their audio elements from the page's DOM, making it difficult for an extension to attach to the media stream to loop it.
+
+If you are a developer who has experience hooking into Spotify's web player, or if you want to write an adapter for another unsupported site, **please open a pull request!** Help us make Loop It work everywhere.
