@@ -36,6 +36,7 @@
   right: 20px;
   z-index: 2147483000;
   width: 272px;
+  min-width: 240px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 30%),
     var(--loopit-glass);
@@ -53,6 +54,7 @@
   -webkit-font-smoothing: antialiased;
   user-select: none;
   overflow: hidden;
+  resize: both;
   isolation: isolate;
   transition:
     width 0.38s var(--loopit-spring),
@@ -74,11 +76,15 @@
 }
 
 #loopit-panel.loopit-collapsed {
-  width: 172px;
+  width: 172px !important;
+  height: auto !important;
+  resize: none;
 }
 #loopit-panel.loopit-collapsed #loopit-body {
   max-height: 0;
   opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 #loopit-panel.loopit-enter {
