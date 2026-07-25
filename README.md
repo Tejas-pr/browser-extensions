@@ -8,7 +8,8 @@
 ## 🔁 Loop It — Universal A-B Repeat
 
 <div align="center">
-  <img src="loopit-extension/images/yt-music.png" alt="Loop It Extension Preview" width="600">
+  <img src="loopit-extension/images/yt-music.png" alt="Loop It on YouTube Music" width="400">
+  <img src="loopit-extension/images/apple-music.png" alt="Loop It on Apple Music" width="400">
   <br>
   <br>
   <img src="loopit-extension/images/loopit.png" alt="Loop It Extension Collapsed" width="300">

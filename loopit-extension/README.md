@@ -4,7 +4,8 @@
 </div>
 
 <div align="center">
-  <img src="images/yt-music.png" alt="Loop It Extension Preview" width="600">
+  <img src="images/yt-music.png" alt="Loop It on YouTube Music" width="400">
+  <img src="images/apple-music.png" alt="Loop It on Apple Music" width="400">
   <br>
   <br>
   <img src="images/loopit.png" alt="Loop It Extension Collapsed" width="300">
