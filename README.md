@@ -8,7 +8,7 @@ A floating panel that loops any section of a YouTube video or YouTube Music trac
 
 ### Installation (Chrome, Edge, Brave — any Chromium browser)
 
-1. **Download the code**: Click the green **Code** button on this repository and select **Download ZIP**, then extract it to a permanent location.
+1. **Download the extension**: Go to the [Releases page](https://github.com/Tejas-pr/browser-extensions/releases/latest) and download `loopit-extension.zip`. Extract this zip file to a permanent location.
 2. **Open Extensions page**: In your browser, navigate to `chrome://extensions` (or `edge://extensions`).
 3. **Enable Developer Mode**: Turn on the **Developer mode** toggle in the top-right corner.
 4. **Load the extension**: Click the **Load unpacked** button.

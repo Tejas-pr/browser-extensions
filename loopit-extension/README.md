@@ -6,11 +6,12 @@ slow playback down, and remembers your loop per track.
 
 ## Install (Chrome, Edge, Brave — any Chromium browser)
 
-1. Unzip this folder somewhere permanent (don't delete it after installing).
-2. Open `chrome://extensions` (or `edge://extensions`).
-3. Turn on **Developer mode** (top-right toggle).
-4. Click **Load unpacked** and select the `loopit-extension` folder.
-5. Go to youtube.com or music.youtube.com and play something.
+1. **Download the extension**: Go to the [Releases page](https://github.com/Tejas-pr/browser-extensions/releases/latest) and download `loopit-extension.zip`.
+2. Unzip this folder somewhere permanent (don't delete it after installing).
+3. Open `chrome://extensions` (or `edge://extensions`).
+4. Turn on **Developer mode** (top-right toggle).
+5. Click **Load unpacked** and select the `loopit-extension` folder.
+6. Go to youtube.com or music.youtube.com and play something.
 
 No API keys, no account, no data collection — everything stays in your
 browser's local storage.
