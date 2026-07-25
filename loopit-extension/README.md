@@ -1,5 +1,9 @@
 # Loop It — A-B Repeat for YouTube & YouTube Music (v2)
 
+![Loop It Preview](preview.png)
+<br>
+![Loop It Collapsed](preview_collapsed.png)
+
 A floating panel that loops any section of a YouTube video or YouTube Music
 track, shows your loop markers right on the real progress bar, lets you
 slow playback down, and remembers your loop per track.

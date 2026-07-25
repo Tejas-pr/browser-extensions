@@ -4,6 +4,10 @@ A collection of useful browser extensions.
 
 ## Loop It — A-B Repeat for YouTube & YouTube Music
 
+![Loop It Extension Preview](loopit-extension/preview.png)
+<br>
+![Loop It Extension Collapsed](loopit-extension/preview_collapsed.png)
+
 A floating panel that loops any section of a YouTube video or YouTube Music track, shows your loop markers right on the real progress bar, lets you slow playback down, and remembers your loop per track.
 
 ### Installation (Chrome, Edge, Brave — any Chromium browser)
