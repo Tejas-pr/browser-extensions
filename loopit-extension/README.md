@@ -1,73 +1,75 @@
-# Loop It — A-B Repeat for YouTube & YouTube Music (v2)
+<div align="center">
+  <h1>🔁 Loop It — A-B Repeat for YouTube</h1>
+  <p>Ultimate playback control wrapped in a stunning glassmorphic UI.</p>
+</div>
 
-![Loop It Preview](preview.png)
-<br>
-![Loop It Collapsed](preview_collapsed.png)
+<div align="center">
+  <img src="preview.png" alt="Loop It Extension Preview" width="600">
+  <br>
+  <br>
+  <img src="preview_collapsed.png" alt="Loop It Extension Collapsed" width="300">
+</div>
 
-A floating panel that loops any section of a YouTube video or YouTube Music
-track, shows your loop markers right on the real progress bar, lets you
-slow playback down, and remembers your loop per track.
+---
 
-## Install (Chrome, Edge, Brave — any Chromium browser)
+## ✨ Features
 
-1. **Download the extension**: Go to the [Releases page](https://github.com/Tejas-pr/browser-extensions/releases/latest) and download `loopit-extension.zip`.
-2. Unzip this folder somewhere permanent (don't delete it after installing).
-3. Open `chrome://extensions` (or `edge://extensions`).
-4. Turn on **Developer mode** (top-right toggle).
-5. Click **Load unpacked** and select the `loopit-extension` folder.
-6. Go to youtube.com or music.youtube.com and play something.
+- **Media Controls** — Play/Pause, Next Track, and Previous Track buttons integrated directly into the panel.
+- **Manual Time Entry** — Type exact timestamps (e.g., `1:20`) into the A and B fields, or click **SET** to capture the current playhead.
+- **Draggable Timeline** — Drag along the custom timeline in the panel to visually scrub and set your loop boundaries.
+- **Native Scrubber Markers** — A/B points are elegantly displayed directly on YouTube's native progress bar.
+- **Playback Speed** — Instantly adjust playback speed to slow down complex passages for learning, then easily revert to normal speed.
+- **Persistent Saved Loops** — Hit **Save loop** and the extension will remember your loop points for that specific track/video the next time you open it.
+- **Premium Glassmorphic UI** — A beautiful, translucent, modern interface designed for maximum aesthetics and minimal intrusion.
+- **Smart Auto-Reset** — Loop points cleanly reset when you navigate to a new track, keeping your experience friction-free.
 
-No API keys, no account, no data collection — everything stays in your
-browser's local storage.
+---
 
-## Features
+## 🚀 Installation & Usage
 
-- **Media Controls** — Play/Pause, Next Track, and Previous Track buttons right in the panel.
-- **Manual Time Entry** — Type exact timestamps (like `1:20`) into the A and B fields, or click "SET" to use the current time.
-- **Draggable Timeline** — Drag the timeline in the panel to visually set your loop points.
-- **Markers on the real scrubber** — A/B points show directly on YouTube's own progress bar.
-- **Playback speed** — Slow a passage down to learn it, then bring it back to full speed.
-- **Saved loops** — Hit **Save loop** to remember the loop for that exact video/track.
-- **Beautiful Glassmorphic UI** — A stunning translucent UI that looks great in modern browsers.
-- **Auto-reset on Track Change** — Loop points cleanly reset when you navigate to a new track.
+> **Note:** Compatible with any Chromium-based browser (Chrome, Edge, Brave, etc.)
 
-## How to use it
+1. Download the latest `loopit-extension.zip` from the [Releases page](https://github.com/Tejas-pr/browser-extensions/releases/latest).
+2. Unzip the folder to a permanent location on your machine.
+3. Navigate to `chrome://extensions` (or `edge://extensions`).
+4. Toggle on **Developer mode** (top-right corner).
+5. Click **Load unpacked** and select the unzipped `loopit-extension` folder.
 
-- **Media Controls** — Use the new Prev/Play/Next buttons to control playback without hunting for YouTube's buttons.
-- **Set A / Set B** — Click the inputs to type a time, click "SET", or drag the timeline.
-- **Loop: On/Off** — Toggles the repeat.
-- **Speed chips** — Change `video.playbackRate` instantly.
-- **Save loop / Forget** — Persist or remove the loop for this track.
-- **Shortcuts Panel** — Click the `⌘` icon to view all keyboard shortcuts.
-- Drag the header to move the panel; **−** minimizes it.
+### 🎮 How to Use
+- **Media Controls** — Manage playback directly without hunting for YouTube's native controls.
+- **Set Loop Points** — Type a time, click "SET", or drag the timeline to define your A and B boundaries.
+- **Toggle Loop** — Instantly turn the repeat on or off.
+- **Speed Adjustments** — Click the speed chips to change `video.playbackRate` instantly.
+- **Shortcuts Panel** — Click the `⌘` icon in the header to view all keyboard shortcuts.
+- **Window Management** — Drag the header to reposition the panel anywhere on your screen. Click **−** to minimize it completely out of the way.
 
-Keyboard shortcuts (ignored while typing in a text field):
+---
+
+## ⌨️ Keyboard Shortcuts
+
+*Note: Shortcuts are intelligently ignored while you are typing in any text field.*
 
 | Shortcut | Action |
-|---|---|
-| `Shift+A` | Set point A |
-| `Shift+B` | Set point B |
-| `Shift+L` | Toggle loop |
-| `Shift+C` | Clear the loop |
-| `Shift+S` | Save the current loop |
+|:---|:---|
+| <kbd>Shift</kbd> + <kbd>A</kbd> | Set Point A |
+| <kbd>Shift</kbd> + <kbd>B</kbd> | Set Point B |
+| <kbd>Shift</kbd> + <kbd>L</kbd> | Toggle Loop |
+| <kbd>Shift</kbd> + <kbd>C</kbd> | Clear the Loop |
+| <kbd>Shift</kbd> + <kbd>S</kbd> | Save the Current Loop |
 
-## Notes / limitations
+---
 
-- Works on `youtube.com` (regular videos) and `music.youtube.com`.
-- Saved loops are keyed by the video ID in the URL (`?v=...`), stored in
-  `localStorage` — they're per-browser, not synced across devices.
-- If YouTube swaps the `<video>` element (e.g. after an ad), loop points
-  reset for that playback — expected, since it's technically a new video
-  instance.
-- The on-scrubber markers are a visual overlay positioned on top of
-  YouTube's real progress bar, not injected into it — this is deliberately
-  more robust against YouTube changing their internal markup.
+## 📝 Technical Notes & Limitations
 
-## Publishing this yourself
+- Fully functional on both `youtube.com` (standard videos) and `music.youtube.com`.
+- **Privacy First:** No API keys, no accounts, and absolutely zero data collection. Everything stays strictly in your browser's local storage.
+- Saved loops are keyed by the video ID (`?v=...`) and stored in `localStorage`. They are localized to your specific browser and do not sync across devices.
+- If YouTube dynamically swaps the `<video>` element (e.g., after an ad), loop points will reset for that playback session. This is expected behavior as a new video instance is created.
+- The on-scrubber markers function as a visual overlay positioned atop YouTube's real progress bar, rather than being injected into it. This architectural choice makes the extension highly robust against YouTube's internal markup changes.
 
-- **Chrome Web Store**: register at the [Developer Dashboard](https://chrome.google.com/webstore/devconsole)
-  (one-time $5 fee), set your public "Publisher name" in account settings,
-  zip this folder, and upload it as a new item. Icons are already included.
-- **Firefox**: works with minor manifest tweaks (Firefox supports MV3
-  content scripts the same way); publish for free via
-  [addons.mozilla.org](https://addons.mozilla.org).
+---
+
+## 📦 Publishing the Extension
+
+- **Chrome Web Store**: Register at the [Developer Dashboard](https://chrome.google.com/webstore/devconsole) (one-time $5 fee), configure your public "Publisher name", zip this directory, and upload it as a new item. All necessary icons are already included.
+- **Firefox**: The extension is compatible with minor manifest adjustments (Firefox fully supports MV3 content scripts). You can publish it for free via [addons.mozilla.org](https://addons.mozilla.org).

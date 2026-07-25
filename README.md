@@ -1,21 +1,44 @@
-# Browser Extensions
+<div align="center">
+  <h1>🚀 Browser Extensions Collection</h1>
+  <p>A curated collection of powerful, beautifully designed browser extensions to enhance your web experience.</p>
+</div>
 
-A collection of useful browser extensions.
+---
 
-## Loop It — A-B Repeat for YouTube & YouTube Music
+## 🔁 Loop It — A-B Repeat for YouTube & YouTube Music
 
-![Loop It Extension Preview](loopit-extension/preview.png)
+<div align="center">
+  <img src="loopit-extension/preview.png" alt="Loop It Extension Preview" width="600">
+  <br>
+  <br>
+  <img src="loopit-extension/preview_collapsed.png" alt="Loop It Extension Collapsed" width="300">
+</div>
+
 <br>
-![Loop It Extension Collapsed](loopit-extension/preview_collapsed.png)
 
-A floating panel that loops any section of a YouTube video or YouTube Music track, shows your loop markers right on the real progress bar, lets you slow playback down, and remembers your loop per track.
+**Loop It** is a premium, glassmorphic floating panel that gives you ultimate control over YouTube playback. Effortlessly loop any section of a video or music track, visualize loop markers directly on the native progress bar, and manipulate playback speed—all wrapped in a stunning UI.
 
-### Installation (Chrome, Edge, Brave — any Chromium browser)
+### ✨ Key Features
+- **Native Scrubber Integration**: See your A/B loop points beautifully rendered on YouTube's own progress bar.
+- **Advanced Media Controls**: Play, pause, skip, and rewind without ever leaving the panel.
+- **Precision Timestamps**: Manually enter exact timestamps or drag the custom timeline to set points visually.
+- **Smart Memory**: Automatically saves and remembers your loops per track.
+- **Fluid & Responsive Design**: A stunning translucent glassmorphic interface that seamlessly adapts to fullscreen mode and collapses when you need space.
 
-1. **Download the extension**: Go to the [Releases page](https://github.com/Tejas-pr/browser-extensions/releases/latest) and download `loopit-extension.zip`. Extract this zip file to a permanent location.
-2. **Open Extensions page**: In your browser, navigate to `chrome://extensions` (or `edge://extensions`).
-3. **Enable Developer Mode**: Turn on the **Developer mode** toggle in the top-right corner.
-4. **Load the extension**: Click the **Load unpacked** button.
-5. **Select the folder**: Select the extracted `loopit-extension` folder.
+### 📦 Quick Installation (Chromium Browsers)
 
-For more details on features and usage, see the [Loop It README](loopit-extension/README.md).
+> Compatible with Google Chrome, Microsoft Edge, Brave, and other Chromium-based browsers.
+
+1. **Download the Extension:** Navigate to the [Releases Page](https://github.com/Tejas-pr/browser-extensions/releases/latest) and download `loopit-extension.zip`. Extract the files to a permanent directory on your computer.
+2. **Access Extension Settings:** Open your browser and go to `chrome://extensions` (or `edge://extensions`).
+3. **Enable Developer Mode:** Toggle **Developer mode** on in the top-right corner.
+4. **Load the Extension:** Click the **Load unpacked** button.
+5. **Select the Directory:** Choose the extracted `loopit-extension` folder.
+
+You're all set! Head over to YouTube or YouTube Music and experience the upgrade. 
+
+---
+
+<div align="center">
+  <p>Explore the <a href="loopit-extension/README.md">Detailed Loop It Documentation</a> for a full breakdown of keyboard shortcuts, publishing instructions, and technical notes.</p>
+</div>
