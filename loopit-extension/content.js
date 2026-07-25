@@ -16,6 +16,20 @@
   let speedChips = [];
   let saveBtn, deleteSavedBtn, glyphEl;
   let barOverlay, barMarkerA, barMarkerB, barRange;
+  let thumbA, thumbB;
+
+
+  function parseTime(str) {
+    if (!str) return null;
+    const parts = str.split(':').map(Number);
+    if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+      return parts[0] * 60 + parts[1];
+    }
+    if (parts.length === 1 && !isNaN(parts[0])) {
+      return parts[0];
+    }
+    return null;
+  }
 
   function fmt(t) {
     if (t == null || Number.isNaN(t)) return '--:--';
@@ -94,25 +108,41 @@
       <div class="loopit-header" id="loopit-header">
         <span class="loopit-title"><span class="loopit-glyph" id="loopit-glyph">&#8635;</span>LOOP IT</span>
         <span class="loopit-header-actions">
-          <button class="loopit-icon-btn" id="loopit-help" title="Shift+A set A &middot; Shift+B set B &middot; Shift+L toggle loop &middot; Shift+S save loop">?</button>
+          <button class="loopit-icon-btn" id="loopit-shortcuts-btn" title="Shortcuts">⌘</button>
           <button class="loopit-icon-btn" id="loopit-collapse" title="Minimize">&#8722;</button>
         </span>
       </div>
       <div id="loopit-body">
+        <div id="loopit-shortcuts-panel" class="loopit-hidden">
+          <div class="loopit-shortcut-item"><span>Set Point A</span><strong>Shift+A</strong></div>
+          <div class="loopit-shortcut-item"><span>Set Point B</span><strong>Shift+B</strong></div>
+          <div class="loopit-shortcut-item"><span>Toggle Loop</span><strong>Shift+L</strong></div>
+          <div class="loopit-shortcut-item"><span>Clear Loop</span><strong>Shift+C</strong></div>
+          <div class="loopit-shortcut-item"><span>Save Loop</span><strong>Shift+S</strong></div>
+        </div>
+        
+        <div class="loopit-media-controls">
+          <button class="loopit-media-btn" id="loopit-prev" title="Previous Track">&#9198;</button>
+          <button class="loopit-media-btn" id="loopit-playpause" title="Play/Pause">&#9199;</button>
+          <button class="loopit-media-btn" id="loopit-next" title="Next Track">&#9197;</button>
+        </div>
+
         <div class="loopit-marker-row">
           <span class="loopit-dot loopit-dot-a"></span>
           <span class="loopit-marker-label">A</span>
-          <span class="loopit-time" id="loopit-aTime">--:--</span>
+          <input type="text" class="loopit-time-input" id="loopit-aTime" value="--:--">
           <button class="loopit-set-btn" id="loopit-setA">SET</button>
         </div>
         <div class="loopit-strip" id="loopit-strip">
           <div class="loopit-strip-range" id="loopit-stripRange"></div>
+          <div class="loopit-strip-thumb loopit-thumb-a" id="loopit-thumbA"></div>
+          <div class="loopit-strip-thumb loopit-thumb-b" id="loopit-thumbB"></div>
           <div class="loopit-strip-playhead" id="loopit-stripPlayhead"></div>
         </div>
         <div class="loopit-marker-row">
           <span class="loopit-dot loopit-dot-b"></span>
           <span class="loopit-marker-label">B</span>
-          <span class="loopit-time" id="loopit-bTime">--:--</span>
+          <input type="text" class="loopit-time-input" id="loopit-bTime" value="--:--">
           <button class="loopit-set-btn" id="loopit-setB">SET</button>
         </div>
         <div class="loopit-actions">
@@ -137,6 +167,8 @@
     strip = panelEl.querySelector('#loopit-strip');
     stripRange = panelEl.querySelector('#loopit-stripRange');
     stripPlayhead = panelEl.querySelector('#loopit-stripPlayhead');
+    thumbA = panelEl.querySelector('#loopit-thumbA');
+    thumbB = panelEl.querySelector('#loopit-thumbB');
     statusEl = panelEl.querySelector('#loopit-status');
     saveBtn = panelEl.querySelector('#loopit-save');
     deleteSavedBtn = panelEl.querySelector('#loopit-deleteSaved');
@@ -149,6 +181,88 @@
     panelEl.querySelector('#loopit-collapse').addEventListener('click', toggleCollapse);
     saveBtn.addEventListener('click', saveCurrentLoop);
     deleteSavedBtn.addEventListener('click', deleteSavedLoop);
+    
+    // Shortcuts
+    panelEl.querySelector('#loopit-shortcuts-btn').addEventListener('click', () => {
+      panelEl.querySelector('#loopit-shortcuts-panel').classList.toggle('loopit-hidden');
+    });
+
+    // Media Controls
+    panelEl.querySelector('#loopit-prev').addEventListener('click', () => {
+      const btn = document.querySelector('.ytp-prev-button') || document.querySelector('.ytmusic-player-bar .previous-button');
+      if (btn) btn.click();
+    });
+    panelEl.querySelector('#loopit-next').addEventListener('click', () => {
+      const btn = document.querySelector('.ytp-next-button') || document.querySelector('.ytmusic-player-bar .next-button');
+      if (btn) btn.click();
+    });
+    panelEl.querySelector('#loopit-playpause').addEventListener('click', () => {
+      if (!video) return;
+      if (video.paused) video.play();
+      else video.pause();
+    });
+
+    // Manual Time Entry
+    function handleTimeInput(e, isA) {
+      if (e.type === 'keydown' && e.key !== 'Enter') return;
+      const t = parseTime(e.target.value);
+      if (t !== null && video) {
+        if (isA) {
+          pointA = t;
+          if (pointB != null && pointA >= pointB) pointB = null;
+        } else {
+          if (pointA != null && t <= pointA) return flash('B must be after A');
+          pointB = t;
+        }
+        updateDisplay();
+        if (e.type === 'keydown') e.target.blur();
+      } else {
+        e.target.value = fmt(isA ? pointA : pointB);
+      }
+    }
+    aTimeEl.addEventListener('blur', (e) => handleTimeInput(e, true));
+    aTimeEl.addEventListener('keydown', (e) => handleTimeInput(e, true));
+    bTimeEl.addEventListener('blur', (e) => handleTimeInput(e, false));
+    bTimeEl.addEventListener('keydown', (e) => handleTimeInput(e, false));
+
+    // Draggable Strip
+    function handleStripDrag(e) {
+      if (!video || !video.duration) return;
+      const rect = strip.getBoundingClientRect();
+      let pct = (e.clientX - rect.left) / rect.width;
+      pct = Math.max(0, Math.min(pct, 1));
+      const t = pct * video.duration;
+      
+      if (pointA == null) {
+        pointA = t;
+      } else if (pointB == null) {
+        if (t > pointA) pointB = t;
+        else { pointB = pointA; pointA = t; }
+      } else {
+        if (Math.abs(t - pointA) < Math.abs(t - pointB)) {
+          pointA = t;
+        } else {
+          pointB = t;
+        }
+      }
+      if (pointA != null && pointB != null && pointA > pointB) {
+        const tmp = pointA; pointA = pointB; pointB = tmp;
+      }
+      updateDisplay();
+    }
+    
+    let isDraggingStrip = false;
+    strip.addEventListener('mousedown', (e) => {
+      isDraggingStrip = true;
+      handleStripDrag(e);
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', (e) => {
+      if (isDraggingStrip) handleStripDrag(e);
+    });
+    document.addEventListener('mouseup', () => {
+      isDraggingStrip = false;
+    });
 
     const speedRow = panelEl.querySelector('#loopit-speedRow');
     speedChips = SPEEDS.map((rate) => {
@@ -293,8 +407,8 @@
 
   function updateDisplay() {
     if (!aTimeEl) return;
-    aTimeEl.textContent = fmt(pointA);
-    bTimeEl.textContent = fmt(pointB);
+    if (document.activeElement !== aTimeEl) aTimeEl.value = fmt(pointA);
+    if (document.activeElement !== bTimeEl) bTimeEl.value = fmt(pointB);
     loopBtn.textContent = looping ? 'Loop: On' : 'Loop: Off';
     loopBtn.classList.toggle('loopit-on', looping);
     strip.classList.toggle('loopit-looping', looping);
@@ -313,6 +427,18 @@
       const widthPct = ((pointB - pointA) / duration) * 100;
       stripRange.style.left = `${leftPct}%`;
       stripRange.style.width = `${Math.max(widthPct, 0.5)}%`;
+    }
+    if (duration && pointA != null) {
+      thumbA.style.display = 'block';
+      thumbA.style.left = `${(pointA / duration) * 100}%`;
+    } else if (thumbA) {
+      thumbA.style.display = 'none';
+    }
+    if (duration && pointB != null) {
+      thumbB.style.display = 'block';
+      thumbB.style.left = `${(pointB / duration) * 100}%`;
+    } else if (thumbB) {
+      thumbB.style.display = 'none';
     }
     if (duration && video) {
       const pct = (video.currentTime / duration) * 100;
@@ -448,6 +574,9 @@
       if (id !== currentVideoId) {
         // Same video element reused across a client-side nav (rare) — re-check saved loop.
         currentVideoId = id;
+        pointA = null;
+        pointB = null;
+        looping = false;
         const saved = readSavedLoop(id);
         if (saved) {
           pointA = saved.a;

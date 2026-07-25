@@ -16,30 +16,25 @@ slow playback down, and remembers your loop per track.
 No API keys, no account, no data collection — everything stays in your
 browser's local storage.
 
-## What's new in v2
+## Features
 
-- **Markers on the real scrubber** — A/B points now show directly on
-  YouTube's own progress bar (teal for A, amber for B), not just on the
-  panel's mini strip.
-- **Playback speed** — chips for 0.5x–2x, so you can slow a passage down
-  to learn it, then bring it back to full speed.
-- **Saved loops** — hit **Save loop** and it's remembered for that exact
-  video/track; next time you open it, your A/B points load automatically.
-  **Forget** removes it.
-- **Fullscreen support** — the panel and markers now follow you into
-  fullscreen instead of disappearing.
-- **Toolbar icon** — click the extension icon to bring the panel into
-  view if it's collapsed or off-screen.
-- Small polish pass: entrance animation, a spinning loop glyph while
-  active, tidier layout, shortcuts moved into a "?" tooltip instead of
-  cluttering the panel.
+- **Media Controls** — Play/Pause, Next Track, and Previous Track buttons right in the panel.
+- **Manual Time Entry** — Type exact timestamps (like `1:20`) into the A and B fields, or click "SET" to use the current time.
+- **Draggable Timeline** — Drag the timeline in the panel to visually set your loop points.
+- **Markers on the real scrubber** — A/B points show directly on YouTube's own progress bar.
+- **Playback speed** — Slow a passage down to learn it, then bring it back to full speed.
+- **Saved loops** — Hit **Save loop** to remember the loop for that exact video/track.
+- **Beautiful Glassmorphic UI** — A stunning translucent UI that looks great in modern browsers.
+- **Auto-reset on Track Change** — Loop points cleanly reset when you navigate to a new track.
 
 ## How to use it
 
-- **Set A / Set B** — mark the loop start/end at the current playhead.
-- **Loop: On/Off** — toggles the repeat.
-- **Speed chips** — change `video.playbackRate` instantly.
-- **Save loop / Forget** — persist or remove the loop for this track.
+- **Media Controls** — Use the new Prev/Play/Next buttons to control playback without hunting for YouTube's buttons.
+- **Set A / Set B** — Click the inputs to type a time, click "SET", or drag the timeline.
+- **Loop: On/Off** — Toggles the repeat.
+- **Speed chips** — Change `video.playbackRate` instantly.
+- **Save loop / Forget** — Persist or remove the loop for this track.
+- **Shortcuts Panel** — Click the `⌘` icon to view all keyboard shortcuts.
 - Drag the header to move the panel; **−** minimizes it.
 
 Keyboard shortcuts (ignored while typing in a text field):
