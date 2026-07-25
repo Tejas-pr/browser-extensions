@@ -57,14 +57,6 @@
       prev: () => { const btn = document.querySelector('.ytp-prev-button') || document.querySelector('.ytmusic-player-bar .previous-button'); if (btn) btn.click(); },
       next: () => { const btn = document.querySelector('.ytp-next-button') || document.querySelector('.ytmusic-player-bar .next-button'); if (btn) btn.click(); }
     },
-    Spotify: {
-      matches: () => location.hostname.includes('spotify.com'),
-      getId: () => location.pathname,
-      getMedia: () => document.querySelector('video, audio'),
-      getScrubber: () => document.querySelector('[data-testid="playback-progressbar"]'),
-      prev: () => { const btn = document.querySelector('[data-testid="control-button-skip-back"]'); if (btn) btn.click(); },
-      next: () => { const btn = document.querySelector('[data-testid="control-button-skip-forward"]'); if (btn) btn.click(); }
-    },
     AppleMusic: {
       matches: () => location.hostname.includes('music.apple.com'),
       getId: () => location.pathname,

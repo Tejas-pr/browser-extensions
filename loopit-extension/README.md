@@ -17,7 +17,7 @@
 - **Media Controls** — Play/Pause, Next Track, and Previous Track buttons integrated directly into the panel.
 - **Manual Time Entry** — Type exact timestamps (e.g., `1:20`) into the A and B fields, or click **SET** to capture the current playhead.
 - **Draggable Timeline** — Drag along the custom timeline in the panel to visually scrub and set your loop boundaries.
-- **Native Scrubber Markers** — A/B points are elegantly displayed directly on supported native progress bars (e.g., YouTube, Spotify).
+- **Native Scrubber Markers** — A/B points are elegantly displayed directly on supported native progress bars (e.g., YouTube).
 - **Playback Speed** — Instantly adjust playback speed to slow down complex passages for learning, then easily revert to normal speed.
 - **Persistent Saved Loops** — Hit **Save loop** and the extension will remember your loop points for that specific track/video the next time you open it.
 - **Premium Glassmorphic UI** — A beautiful, translucent, modern interface designed for maximum aesthetics and minimal intrusion.
@@ -61,7 +61,7 @@
 
 ## 📝 Technical Notes & Limitations
 
-- **Universal Support**: Uses deep site adapters for YouTube, YouTube Music, Spotify, and Apple Music. Automatically falls back to a generic adapter for any other site using standard HTML5 `<video>` or `<audio>` elements.
+- **Universal Support**: Uses deep site adapters for YouTube, YouTube Music, and Apple Music. Automatically falls back to a generic adapter for any other site using standard HTML5 `<video>` or `<audio>` elements. *(Note: Spotify is unsupported due to DRM hiding its audio elements).*
 - **Privacy First:** No API keys, no accounts, and absolutely zero data collection. Everything stays strictly in your browser's local storage.
 - Saved loops are keyed by the video ID (`?v=...`) and stored in `localStorage`. They are localized to your specific browser and do not sync across devices.
 - If YouTube dynamically swaps the `<video>` element (e.g., after an ad), loop points will reset for that playback session. This is expected behavior as a new video instance is created.
