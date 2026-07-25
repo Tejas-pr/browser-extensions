@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Loop It — A-B Repeat for YouTube & YouTube Music",
-  "version": "2.0.0",
-  "description": "Repeat any section of a YouTube video or YouTube Music track on a loop, with adjustable speed, saved loops, and markers on the real progress bar.",
+  "name": "Loop It — Universal A-B Repeat",
+  "version": "3.0.0",
+  "description": "Repeat any section of a video or music track on a loop, with adjustable speed and saved loops. Works on YouTube, Spotify, and more.",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -22,8 +22,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://www.youtube.com/*",
-        "*://music.youtube.com/*"
+        "<all_urls>"
       ],
       "js": ["content.js"],
       "css": ["content.css"],

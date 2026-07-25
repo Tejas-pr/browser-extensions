@@ -47,12 +47,55 @@
     }, 1800);
   }
 
+  // ---------- site adapters ----------
+  const Adapters = {
+    YouTube: {
+      matches: () => location.hostname.includes('youtube.com'),
+      getId: () => new URLSearchParams(location.search).get('v') || location.pathname,
+      getMedia: () => document.querySelector('video'),
+      getScrubber: () => document.querySelector('.ytp-progress-bar-container') || document.querySelector('#progress-bar'),
+      prev: () => { const btn = document.querySelector('.ytp-prev-button') || document.querySelector('.ytmusic-player-bar .previous-button'); if (btn) btn.click(); },
+      next: () => { const btn = document.querySelector('.ytp-next-button') || document.querySelector('.ytmusic-player-bar .next-button'); if (btn) btn.click(); }
+    },
+    Spotify: {
+      matches: () => location.hostname.includes('spotify.com'),
+      getId: () => location.pathname,
+      getMedia: () => document.querySelector('video, audio'),
+      getScrubber: () => document.querySelector('[data-testid="playback-progressbar"]'),
+      prev: () => { const btn = document.querySelector('[data-testid="control-button-skip-back"]'); if (btn) btn.click(); },
+      next: () => { const btn = document.querySelector('[data-testid="control-button-skip-forward"]'); if (btn) btn.click(); }
+    },
+    AppleMusic: {
+      matches: () => location.hostname.includes('music.apple.com'),
+      getId: () => location.pathname,
+      getMedia: () => document.querySelector('video, audio, apple-music-video'),
+      getScrubber: () => null,
+      prev: () => { const btn = document.querySelector('.button-skip-backwards'); if (btn) btn.click(); },
+      next: () => { const btn = document.querySelector('.button-skip-forward'); if (btn) btn.click(); }
+    },
+    Generic: {
+      matches: () => true, // Fallback
+      getId: () => location.hostname + location.pathname,
+      getMedia: () => document.querySelector('video, audio'),
+      getScrubber: () => null,
+      prev: () => {},
+      next: () => {}
+    }
+  };
+
+  let activeAdapter = Adapters.Generic;
+  for (const key in Adapters) {
+    if (Adapters[key].matches()) {
+      activeAdapter = Adapters[key];
+      break;
+    }
+  }
+
   // ---------- video id / per-track storage ----------
 
   function getVideoId() {
     try {
-      const v = new URLSearchParams(location.search).get('v');
-      return v || null;
+      return activeAdapter.getId() || null;
     } catch (e) {
       return null;
     }
@@ -103,6 +146,7 @@
     panelEl = document.createElement('div');
     panelEl.id = 'loopit-panel';
     panelEl.classList.add('loopit-enter');
+    panelEl.style.display = 'none';
 
     panelEl.innerHTML = `
       <div class="loopit-header" id="loopit-header">
@@ -189,12 +233,10 @@
 
     // Media Controls
     panelEl.querySelector('#loopit-prev').addEventListener('click', () => {
-      const btn = document.querySelector('.ytp-prev-button') || document.querySelector('.ytmusic-player-bar .previous-button');
-      if (btn) btn.click();
+      activeAdapter.prev();
     });
     panelEl.querySelector('#loopit-next').addEventListener('click', () => {
-      const btn = document.querySelector('.ytp-next-button') || document.querySelector('.ytmusic-player-bar .next-button');
-      if (btn) btn.click();
+      activeAdapter.next();
     });
     panelEl.querySelector('#loopit-playpause').addEventListener('click', () => {
       if (!video) return;
@@ -464,10 +506,7 @@
   // ---------- progress-bar overlay (real YouTube/YT Music scrubber) ----------
 
   function getProgressBarEl() {
-    return (
-      document.querySelector('.ytp-progress-bar-container') ||
-      document.querySelector('#progress-bar')
-    );
+    return activeAdapter.getScrubber();
   }
 
   function syncBarOverlay() {
@@ -564,7 +603,12 @@
   }
 
   function scanForVideo() {
-    const v = document.querySelector('video');
+    const v = activeAdapter.getMedia();
+    
+    if (panelEl) {
+      panelEl.style.display = v ? 'block' : 'none';
+    }
+
     if (v && v !== video) {
       attachVideo(v);
     } else if (!v && video) {
