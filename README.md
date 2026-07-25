@@ -16,7 +16,7 @@
 
 <br>
 
-**Loop It** is a premium, glassmorphic floating panel that gives you ultimate control over playback on **YouTube, Apple Music**, and virtually any other streaming site. Effortlessly loop any section of a video or music track, visualize loop markers, and manipulate playback speed—all wrapped in a stunning UI.
+**Loop It** is a premium, glassmorphic floating panel that gives you ultimate control over playback on **YouTube, Spotify, Apple Music**, and virtually any other streaming site. Effortlessly loop any section of a video or music track, visualize loop markers, and manipulate playback speed—all wrapped in a stunning UI.
 
 ### ✨ Key Features
 - **Universal Media Detection**: Magically appears only when an audio or video player is active on the page. Uses deep adapters for major sites and a smart generic fallback for everything else.
@@ -35,7 +35,7 @@
 4. **Load the Extension:** Click the **Load unpacked** button.
 5. **Select the Directory:** Choose the extracted `loopit-extension` folder.
 
-You're all set! Head over to YouTube, Apple Music, or your favorite streaming site and experience the upgrade.
+You're all set! Head over to YouTube, Spotify, or your favorite streaming site and experience the upgrade.
 
 ---
 
